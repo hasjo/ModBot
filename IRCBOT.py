@@ -27,11 +27,12 @@ def hello(msg):
     ircsock.send(bytes("PRIVMSG "+ chan +" :Hello!\n",'UTF-8'))
 
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-ircsock.connect((server, 6667)) # Here we connect to the server using port 6667
+ircsock.connect((server, 6667))
 ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" :yo\n",'UTF-8'))
-ircsock.send(bytes("NICK "+ botnick +"\n",'UTF-8')) # here we actually assign the nick to the bot
+ircsock.send(bytes("NICK "+ botnick +"\n",'UTF-8'))
 
-joinchan(channel) # Join the channel using the functions we previously defined
+joinchan(channel)
+
 CommDict = {}
 
 CommandList = []
@@ -53,10 +54,10 @@ for item in CommandList:
     x += 1
 
 
-while 1: # Be careful with these! It might send you to an infinite loop
-    ircmsg = ircsock.recv(2048).decode('UTF-8') # receive data from the server
-    ircmsg = ircmsg.rstrip() # removing any unnecessary linebreaks.
-    print(ircmsg) # Here we print what's coming from the server
+while 1:
+    ircmsg = ircsock.recv(2048).decode('UTF-8')
+    ircmsg = ircmsg.rstrip()
+    print(ircmsg)
 
     if ircmsg.find(":Hello "+ botnick) != -1 or ircmsg.find(":hello "+ botnick) != -1:
         hello(ircmsg)
