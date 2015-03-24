@@ -1,4 +1,4 @@
-#This is a sample module, meant as the basis for creating a new module
+#This is a Pokemon Answer bot, it will give you information requested about Pokemon
 
 # The module needs a Dictionary of the command that can be run, and the name of the module.
 # The logic for needing the module name is that the main program will run the receiving program
