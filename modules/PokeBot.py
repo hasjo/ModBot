@@ -19,27 +19,13 @@ def ReceiveMsg(command):
     #I used find so you could potentially use arguments
     if command.find("!weak") != -1:
         workstring = command.partition("!weak ")[2]
-        inpstring = workstring.partition(" ")[0].lower()
-        NewList = []
-        NewList.append(inpstring)
-        while workstring.partition(" ")[2] != "":
-            workstring = workstring.partition(" ")[2]
-            inpstring = workstring.partition(" ")[0].lower()
-            NewList.append(inpstring)
-        maxtup = len(NewList)
-        ReturnMSG = weakto(NewList)
+        workstringlist = workstring.split()
+        ReturnMSG = weakto(workstringlist)
         return ReturnMSG
     if command.find("!resist") != -1:
         workstring = command.partition("!resist ")[2]
-        inpstring = workstring.partition(" ")[0].lower()
-        NewList = []
-        NewList.append(inpstring)
-        while workstring.partition(" ")[2] != "":
-            workstring = workstring.partition(" ")[2]
-            inpstring = workstring.partition(" ")[0].lower()
-            NewList.append(inpstring)
-        maxtup = len(NewList)
-        ReturnMSG = resistantto(NewList)
+        workstringlist = workstring.split()
+        ReturnMSG = resistantto(workstringlist)
         return ReturnMSG
     if command.find("!item ") != -1:
         workstring = command
@@ -53,19 +39,12 @@ def ReceiveMsg(command):
     if command.find("!type ") != -1:
         workstring = command
         workstring = workstring.partition("!type ")[2]
-        inpstring = workstring.partition(" ")[0]
-        NewList = []
-        NewList.append(inpstring)
-        while workstring.partition(" ")[2] != "":
-            workstring = workstring.partition(" ")[2]
-            inpstring = workstring.partition(" ")[0]
-            NewList.append(inpstring)
-        maxtup = len(NewList)
+        workstringlist = workstring.split()
         #for x in range(0,maxtup):
             #print(NewList[x])
         OutString = []
-        OutString.append(weakto(NewList))
-        OutString.append(resistantto(NewList))
+        OutString.append(weakto(workstringlist))
+        OutString.append(resistantto(workstringlist))
         return OutString
 
 def pokesearch(poke, conn):
