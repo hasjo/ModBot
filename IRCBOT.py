@@ -20,10 +20,10 @@ def joinchan(chan):
 
 def hello(msg):
     newmsg = msg
-    newmsg = newmsg.partition(":")[2].partition(":")[0]
-    chan = newmsg.partition(" ")[2].partition(" ")[2].replace(" ","")
+    newmsg = newmsg.split(":")[1]
+    chan = newmsg.split()[2]
     if chan == botnick:
-        chan = newmsg.partition("!")[0]
+        chan = newmsg.split("!")[0]
     ircsock.send(bytes("PRIVMSG "+ chan +" :Hello!\n",'UTF-8'))
 
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -57,14 +57,16 @@ for item in CommandList:
 while 1:
     ircmsg = ircsock.recv(2048).decode('UTF-8')
     ircmsg = ircmsg.rstrip()
+    ircmsg = ircmsg.lower()
     print(ircmsg)
 
-    if ircmsg.find(":Hello "+ botnick) != -1 or ircmsg.find(":hello "+ botnick) != -1:
-        hello(ircmsg)
-    if ircmsg.find("PING :") != -1:
+    if ircmsg.find(":hello") != -1:
+        if ircmsg.split(":")[2] == ("hello "+ botnick.lower()):
+            hello(ircmsg)
+    if ircmsg.find("ping :") != -1:
         response = ircmsg.partition(":")[2]
         ping(response)
-    if ircmsg.find(":!Help") != -1:
+    if ircmsg.find(":!help") != -1:
         newmsg = ircmsg
         newmsg = newmsg.partition(":")[2].partition(":")[0]
         chan = newmsg.partition(" ")[2].partition(" ")[2].replace(" ","")
