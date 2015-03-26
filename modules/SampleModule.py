@@ -3,7 +3,7 @@
 # The module needs a Dictionary of the command that can be run, and the name of the module.
 # The logic for needing the module name is that the main program will run the receiving program
 # on the module and the module will handle the input and return the message or do what is needed
-CommandDict = {"!Test":"SampleModule", "!ModName":"SampleModule"}
+CommandDict = {"!test":"SampleModule", "!modname":"SampleModule"}
 
 #This tells the main program what commands the module is looking for and the name of the module
 def GiveDict():
@@ -13,8 +13,8 @@ def GiveDict():
 def ReceiveMsg(command):
     print(command + " - SampleModule")
     #I used find so you could potentially use arguments
-    if command.find("!Test") != -1:
+    if command.find("!test") != -1:
         return "THIS IS A TEST OF THE SAMPLE MODULE"
-    if command.find("!ModName") != -1:
+    if command.find("!modname") != -1:
         return "This is the Sample Module"
 

@@ -45,7 +45,7 @@ for root, dirs, files in os.walk(currdir + "/" + moduledir):
             comm = eval(Filename + "." + "GiveDict")
             ModDict = comm()
             for item in list(ModDict.keys()):
-                CommandList.append(item)
+                CommandList.append(item.lower())
                 ModuleList.append(ModDict[item])
 
 x = 0
